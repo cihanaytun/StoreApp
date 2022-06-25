@@ -21,7 +21,10 @@ namespace storeAPI.Controllers
             _repo = repo;
         }
 
-
+        /// <summary>
+        /// GetProductAll
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetProduct()
         {
@@ -34,7 +37,11 @@ namespace storeAPI.Controllers
         }
 
 
-
+        /// <summary>
+        /// GetProductById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
@@ -47,7 +54,10 @@ namespace storeAPI.Controllers
             return StatusCode(200, product);
         }
 
-
+        /// <summary>
+        /// GetBrands
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("brands")]
         public async Task<IActionResult> GetProductBrands()
         {
@@ -59,7 +69,10 @@ namespace storeAPI.Controllers
             return StatusCode(200, brand);
         }
 
-
+        /// <summary>
+        /// GetTypes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("types")]
         public async Task<IActionResult> GetProductTypes()
         {

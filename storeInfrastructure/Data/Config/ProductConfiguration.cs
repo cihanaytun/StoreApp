@@ -11,7 +11,11 @@ namespace storeInfrastructure.Data.Config
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        //Product kuralları
+        /// <summary>
+        /// Product configuration
+        /// </summary>
+        /// <param name="builder"></param>
+        
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.Property(p => p.Id).IsRequired();

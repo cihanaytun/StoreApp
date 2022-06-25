@@ -16,6 +16,7 @@ namespace storeInfrastructure.Data
             try
             {
                 //ProductBrand
+             
                 if (!storeContext.ProductBrands.Any())
                 {
                     var brandsData = File.ReadAllText("../storeInfrastructure/Data/SeedData/brands.json");
