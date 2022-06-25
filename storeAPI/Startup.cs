@@ -5,13 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using storeCore.Interfaces;
 using storeInfrastructure.Data;
 
 namespace storeAPI
 {
     public class Startup
     {
-        private readonly IConfiguration _configuration;//ekledik
+        //ekledik
+        private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -30,9 +32,15 @@ namespace storeAPI
             });
 
 
-
+            //MySql 
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StoreContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+
+            //Add
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

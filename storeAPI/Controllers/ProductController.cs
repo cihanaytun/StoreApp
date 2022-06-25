@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using storeCore.Interfaces;
 using storeInfrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,18 @@ namespace storeAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly StoreContext _storeContext;
-        public ProductController(StoreContext storeContext)
+        private readonly IProductRepository _repo;
+
+        public ProductController(IProductRepository repo)
         {
-            _storeContext = storeContext;
+            _repo = repo;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetProduct()
         {
-            var product = await _storeContext.Products.ToListAsync();
+            var product = await _repo.GetProductsAsync();
             if (product == null)
             {
                 return StatusCode(500);
@@ -31,16 +33,42 @@ namespace storeAPI.Controllers
             return StatusCode(200, product);
         }
 
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
-            var product = await _storeContext.Products.FindAsync(id);
+            var product = await _repo.GetProductByIdAsync(id);
 
-            if (product.Id != id)
+            if (product == null)
             {
                 return StatusCode(500);
             }
             return StatusCode(200, product);
+        }
+
+
+        [HttpGet("brands")]
+        public async Task<IActionResult> GetProductBrands()
+        {
+            var brand = await _repo.GetProductBrandsAsync();
+            if (brand == null)
+            {
+                return StatusCode(500);
+            }
+            return StatusCode(200, brand);
+        }
+
+
+        [HttpGet("types")]
+        public async Task<IActionResult> GetProductTypes()
+        {
+            var types = await _repo.GetProductTypesAsync();
+            if (types == null)
+            {
+                return StatusCode(500);
+            }
+            return StatusCode(200, types);
         }
 
     }
