@@ -14,7 +14,6 @@ namespace storeAPI
     {
         //ekledik
         private readonly IConfiguration _configuration;
-
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -36,9 +35,11 @@ namespace storeAPI
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StoreContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+            //Cors
 
             //Add
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 
 
         }
