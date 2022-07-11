@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using storeAPI.Helpers;
 using storeCore.Interfaces;
 using storeInfrastructure.Data;
 
@@ -36,10 +37,20 @@ namespace storeAPI
             services.AddDbContext<StoreContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             //Cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsDevPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                });
+            });
 
             //Add
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+            services.AddAutoMapper(typeof(MappingProfiles));
 
 
         }
@@ -57,6 +68,9 @@ namespace storeAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("CorsDevPolicy");
+            //add  resimler için
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
