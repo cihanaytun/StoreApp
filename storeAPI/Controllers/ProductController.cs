@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using storeAPI.Dtos;
+using storeAPI.Errors;
 using storeCore.Entities;
 using storeCore.Interfaces;
 using storeCore.Specifications;
@@ -14,9 +15,8 @@ using System.Threading.Tasks;
 
 namespace storeAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : ControllerBase
+
+    public class ProductController : BaseApicontroller
     {
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
@@ -73,6 +73,8 @@ namespace storeAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(statusCode:StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse),statusCode: StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             //var product = await _repo.GetProductByIdAsync(id);
@@ -81,7 +83,8 @@ namespace storeAPI.Controllers
             var product = await _productsRepo.GetEntityWithSpec(spec);
             if (product == null)
             {
-                return StatusCode(500);
+                //return StatusCode(500);
+                if (product == null) return NotFound(new ApiResponse(404));
             }
 
             return StatusCode(200,_mapper.Map<Product, ProductToReturnDto>(product));

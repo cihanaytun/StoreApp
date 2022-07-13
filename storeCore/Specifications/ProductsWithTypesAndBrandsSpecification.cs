@@ -10,12 +10,18 @@ namespace storeCore.Specifications
 {
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
+        /// <summary>
+        /// Add Product type and brand all
+        /// </summary>
         public ProductsWithTypesAndBrandsSpecification()
         {
             AddInclude(x => x.ProductType);
             AddInclude(x => x.ProductBrand);
         }
 
+        /// <summary>
+        /// Add Product type and brand by id
+        /// </summary>
         public ProductsWithTypesAndBrandsSpecification(int id) : base(x => x.Id == id)
         {
             AddInclude(x => x.ProductType);

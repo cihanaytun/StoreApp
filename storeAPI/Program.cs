@@ -13,7 +13,7 @@ namespace storeAPI
     {
         public static async Task Main(string[] args)
         {
-            //yeniledik
+            //Chanced
             //CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
