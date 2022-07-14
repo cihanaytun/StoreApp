@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace storeAPI.Controllers
 {
 
-    public class BuggyController : BaseApicontroller
+    public class BuggyController : BaseApiController
     {
         private readonly StoreContext _storeContext;
 

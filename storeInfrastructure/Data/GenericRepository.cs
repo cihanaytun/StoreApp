@@ -64,10 +64,23 @@ namespace storeInfrastructure.Data
             return await ApplySepcification(spec).ToListAsync();
         }
 
+        /// <summary>
+        /// CountAsync pagination 
+        /// </summary>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        public async Task<int> CountAsync(ISpecification<T> spec)
+        {
+            return await ApplySepcification(spec).CountAsync();
+        }
+
+         
 
         private IQueryable<T>ApplySepcification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_storeContext.Set<T>().AsQueryable(), spec);
         }
+
+
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using storeAPI.Dtos;
 using storeAPI.Errors;
+using storeAPI.Helpers;
 using storeCore.Entities;
 using storeCore.Interfaces;
 using storeCore.Specifications;
@@ -16,7 +17,7 @@ using System.Threading.Tasks;
 namespace storeAPI.Controllers
 {
 
-    public class ProductController : BaseApicontroller
+    public class ProductController : BaseApiController
     {
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
@@ -51,19 +52,25 @@ namespace storeAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProduct()
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProduct([FromQuery]ProductSpecParams productSpecParams)
         {
             //var product = await _repo.GetProductsAsync();
             //var product = await _productsRepo.ListAllAsync();
 
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(productSpecParams);
+            var countSpec = new ProductWithFiltersCountSpecification(productSpecParams);
+            var totalItems = await _productsRepo.CountAsync(countSpec);
             var products = await _productsRepo.ListAsync(spec);
+
+            var data = _mapper
+                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+            
             if (products == null)
             {
                 return StatusCode(500);
             }
 
-            return StatusCode(200,_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductToReturnDto>>(products));
+            return StatusCode(200,new Pagination<ProductToReturnDto>(productSpecParams.PageIndex,productSpecParams.PageSize,totalItems,data));
         }
 
 

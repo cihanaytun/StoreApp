@@ -10,7 +10,7 @@ namespace storeAPI.Controllers
 {
     [Route("errors/{code}")]
     [ApiExplorerSettings(IgnoreApi =true)]
-    public class ErrorController : BaseApicontroller
+    public class ErrorController : BaseApiController
     {
         /// <summary>
         /// Error

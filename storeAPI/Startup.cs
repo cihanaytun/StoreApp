@@ -108,9 +108,12 @@ namespace storeAPI
 
             //cors
             app.UseCors("CorsDevPolicy");
-
-            //add for images
+ 
+            //add for images 
+            //before that cors policy must be defined because static files need to cors policy
             app.UseStaticFiles();
+
+
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

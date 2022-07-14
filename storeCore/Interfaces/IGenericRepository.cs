@@ -39,5 +39,12 @@ namespace storeCore.Interfaces
         /// <param name="spec"></param>
         /// <returns></returns>
         Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
+
+        /// <summary>
+        /// CountAsync
+        /// </summary>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        Task<int> CountAsync(ISpecification<T> spec);
     }
 }
