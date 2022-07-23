@@ -46,7 +46,7 @@ namespace storeAPI.Controllers
             var thing = _storeContext.Products.Find(42);
             var thingToReturn = thing.ToString();
 
-            return Ok();
+            return Ok(thingToReturn);
         }
 
 
