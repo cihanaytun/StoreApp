@@ -11,3 +11,19 @@
     left: 15px;
 }
 
+a{
+    text-decoration: none;
+    color: #343a40;
+
+    &.active{
+        color: rgb(19, 156, 205);
+        
+    }
+}
+
+.logo{
+    cursor: pointer;
+    &:focus{
+        outline: none;
+    }
+}
