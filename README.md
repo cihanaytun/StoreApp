@@ -1,2 +1,2 @@
-# Dotnet-Core-Angular-StoreApp
+# Store
 *add redis
