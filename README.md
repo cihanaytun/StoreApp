@@ -3,9 +3,14 @@
 ## *BACKEND*
 - SSL
   * dotnet dev-certs https
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.Tools
+- Pomelo.EntityFrameworkCore.MySql
+- StackExchange.Redis
 
 
-## *UI*
+## *USER INTERFACE*
 - add ssl certificate
 - add bootstrap
    * ng add-bootstrap
