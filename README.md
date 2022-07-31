@@ -7,8 +7,8 @@
 ## *UI*
 -add ssl certificate
 - add bootstrap
- * ng add-bootstrap
- * npm install bootstrap @5.2.0beta1
+   * ng add-bootstrap
+   * npm install bootstrap @5.2.0beta1
 - npm install font-awesome
 - ngx-toastr
 - xng-breadcrumb
