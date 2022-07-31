@@ -1,6 +1,8 @@
 # Store
 
-## *BACKEND*
+## I am installing for store project
+
+### *BACKEND*
 - SSL
   * dotnet dev-certs https
 - Microsoft.EntityFrameworkCore
@@ -10,7 +12,7 @@
 - StackExchange.Redis
 
 
-## *USER INTERFACE*
+### *USER INTERFACE*
 - add ssl certificate
 - add bootstrap
    * ng add-bootstrap
