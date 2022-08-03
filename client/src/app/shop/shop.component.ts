@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BusyService } from '../core/services/busy.service';
 import { IBrand } from '../shared/models/brand';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
@@ -23,7 +24,7 @@ export class ShopComponent implements OnInit {
     {name:'Price: High to Low',value:'priceDesc'}
   ]
 
-  constructor(private shopService : ShopService) { }
+  constructor(private shopService : ShopService ,private busy: BusyService) { }
 
   ngOnInit(){
     this.getProducts();
@@ -32,8 +33,10 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts(){
+    this.busy.busy();//add after
     this.shopService.getProducts(this.shopParams)
     .subscribe(response => {
+      this.busy.idle();//add after
       this.products = response.data;
       this.shopParams.pageNumber = response.pageIndex;
       this.shopParams.pageSize = response.pageSize;

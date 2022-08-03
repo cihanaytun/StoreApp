@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BasketService } from 'src/app/basket/basket.service';
+import { IBasket } from 'src/app/shared/models/basket';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   title = 'Store-Navbar';
   
-  constructor() {}
+  constructor(private basketService : BasketService) {}
+  basket$ : Observable<IBasket>;
 
-  ngOnInit(): void {
-
+  ngOnInit(){
+    this.basket$ = this.basketService.basket$;
   }
 
 }
