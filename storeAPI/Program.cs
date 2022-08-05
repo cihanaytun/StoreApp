@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using storeCore.Entities.Identity;
 using storeInfrastructure.Data;
+using storeInfrastructure.Identity;
 using System;
 using System.Threading.Tasks;
 
@@ -27,6 +30,12 @@ namespace storeAPI
                     await storeContext.Database.MigrateAsync();
                     //seed
                     await StoreContextSeed.SeedAsync(storeContext,loggerFactory);
+
+                    // I do with EFCore
+                    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                    var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+                    await identityContext.Database.MigrateAsync();
+                    await AppIdentityDbContextSeed.SeedUsersAsync(userManager);
                 }
                 catch(Exception ex)
                 {

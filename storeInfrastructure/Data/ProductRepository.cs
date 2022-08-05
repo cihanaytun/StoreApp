@@ -22,7 +22,7 @@ namespace storeInfrastructure.Data
         /// <returns></returns>
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
         {
-            return await _storeContext.ProductBrands.ToArrayAsync();
+            return await _storeContext.ProductBrands.ToListAsync();
         }
 
         /// <summary>

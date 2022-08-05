@@ -8,6 +8,7 @@ using storeAPI.Extensions;
 using storeAPI.Helpers;
 using storeAPI.Middleware;
 using storeInfrastructure.Data;
+using storeInfrastructure.Identity;
 
 namespace storeAPI
 {
@@ -27,6 +28,10 @@ namespace storeAPI
             //MySql 
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StoreContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+            //IdentityDbContext
+            var identityConnectionString = _configuration.GetConnectionString("IdentityConnection");
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseMySql(identityConnectionString, ServerVersion.AutoDetect(identityConnectionString)));
 
             //Cors
             services.AddCors(options =>
@@ -81,8 +86,11 @@ namespace storeAPI
                 };
             });*/
 
+
+
             // get application services extensions
-            services.AddApplicationServices(); 
+            services.AddApplicationServices();
+            services.AddIdentityServices(_configuration);
 
         }
 
@@ -120,7 +128,7 @@ namespace storeAPI
             //before that cors policy must be defined because static files need to cors policy
             app.UseStaticFiles();
 
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

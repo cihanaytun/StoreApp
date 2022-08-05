@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using storeAPI.Errors;
 using storeCore.Interfaces;
 using storeInfrastructure.Data;
+using storeInfrastructure.Services;
 using System.Linq;
 
 namespace storeAPI.Extensions
@@ -11,6 +12,7 @@ namespace storeAPI.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
