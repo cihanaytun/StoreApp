@@ -10,7 +10,38 @@ namespace storeAPI.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "storeAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "storeAPI",
+                    Version = "v1" ,
+                    //add
+                    Description = "This Application Prefare For Store App ",
+                    Contact = new OpenApiContact
+                    {
+                        Name ="Cihan",
+                        Email ="cihan_aytun@hotmail.com",          
+                    }
+                    
+                });
+
+                //add
+                var securtiySchema = new OpenApiSecurityScheme
+                {
+                    Description = "JWT Auth Bearer Scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+                c.AddSecurityDefinition("Bearer", securtiySchema);
+
+
+                var securityRequirment = new OpenApiSecurityRequirement { { securtiySchema, new[] { "Bearer" } } };
+                c.AddSecurityRequirement(securityRequirment);
             });
 
             return services;
