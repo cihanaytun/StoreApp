@@ -10,6 +10,10 @@
 - Microsoft.EntityFrameworkCore.Tools
 - Pomelo.EntityFrameworkCore.MySql
 - StackExchange.Redis
+- System.IdentityModel.Tokens.Jwt
+- Microsoft.IdentityModel.Tokens
+- Microsoft.AspNetCore.Authentication.JwtBe
+
 
 
 ### *USER INTERFACE*
