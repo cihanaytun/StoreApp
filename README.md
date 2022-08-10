@@ -14,7 +14,7 @@
 - Microsoft.IdentityModel.Tokens
 - Microsoft.AspNetCore.Authentication.JwtBe
 - https://regexlib.com/
-  * RegisterDto
+  * Register Dto (Password)
 
 
 
@@ -31,5 +31,5 @@
 - npm install ngx-spinner
 - npm install uuid
 - https://regexlib.com/
-  * email
+  * login Email
   
