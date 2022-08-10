@@ -13,6 +13,8 @@
 - System.IdentityModel.Tokens.Jwt
 - Microsoft.IdentityModel.Tokens
 - Microsoft.AspNetCore.Authentication.JwtBe
+- https://regexlib.com/
+  * RegisterDto
 
 
 
@@ -28,3 +30,6 @@
 - npm install bootswatch
 - npm install ngx-spinner
 - npm install uuid
+- https://regexlib.com/
+  * email
+  
