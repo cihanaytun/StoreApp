@@ -10,6 +10,12 @@
 - Microsoft.EntityFrameworkCore.Tools
 - Pomelo.EntityFrameworkCore.MySql
 - StackExchange.Redis
+- System.IdentityModel.Tokens.Jwt
+- Microsoft.IdentityModel.Tokens
+- Microsoft.AspNetCore.Authentication.JwtBe
+- https://regexlib.com/
+  * Register Dto (Password)
+
 
 
 ### *USER INTERFACE*
@@ -24,3 +30,6 @@
 - npm install bootswatch
 - npm install ngx-spinner
 - npm install uuid
+- https://regexlib.com/
+  * login Email
+  
