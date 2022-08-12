@@ -13,7 +13,7 @@ namespace storeAPI.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo { 
                     Title = "storeAPI",
                     Version = "v1" ,
-                    //add
+                    //add 
                     Description = "This Application Prefare For Store App ",
                     Contact = new OpenApiContact
                     {

@@ -12,9 +12,41 @@ p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
     <div class="d-flex align-items-center">
         <a class="position-relative me-4 ">
             <i class="fa fa-shopping-cart fa-2x mr-5 text-dark" routerLink="/basket"></i>
-                <div class="cart-no" *ngIf="(basket$ | async) as basket">{{basket.items.length}}</div>           
+                <div class="cart-no" *ngIf="(basket$ | async)">{{(basket$| async).items.length}}</div>           
         </a>
-        <a class="btn btn-outline-secondary mr-2 me-2">Login</a>
-        <a class="btn btn-outline-secondary mr-3">Sign Up</a>
+        <ng-container *ngIf="(currentUser$ | async) === null">  
+            <a class="btn btn-outline-secondary mr-2 me-2" routerLink="/account/login">Login</a>
+            <a class="btn btn-outline-secondary mr-3" routerLink="/account/register">Sign Up</a>            
+        </ng-container>
+
+
+
+        <ng-container *ngIf="(currentUser$ | async)">
+            <div class="dropdown ml-3 mr-5" dropdown>
+
+
+                <button  dropdownToggle type="button" class="btn btn-outline-secondary dropdown-toggle">
+                    <strong>
+                        Welcome {{(currentUser$ | async).displayName}}
+                    </strong> 
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *dropdownMenu>
+                    <a class="dropdown-item d-flex align-items-center py-2" routerLink="/basket">
+                        <i class="fa fa-shopping-cart me-3"></i> View Basket
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center py-2" routerLink="/orders">
+                        <i class="fa fa-history me-3"></i> View Orders
+                    </a>
+                    <div class="divider dropdown-divider">
+
+                    </div>
+                    <a class="dropdown-item d-flex align-items-center py-2" (click)="logout()">
+                        <i class="fa fa-sign-out me-3"></i> Logout
+                    </a>
+                </div>
+            </div>       
+        </ng-container>
+
+
     </div>
 </div>

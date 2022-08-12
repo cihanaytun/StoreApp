@@ -49,7 +49,7 @@ namespace storeAPI.Controllers
         }
 
 
-        [HttpGet("emailexist")]
+        [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> CheckEmailExistAsync([FromQuery] string email)
         {
             return await _userManager.FindByEmailAsync(email) != null;

@@ -28,13 +28,13 @@ export class BasketService {
     );
   }
 
-  setBasket(basket: IBasket){
-    return this.http.post(this.baseUrl + 'basket', basket).subscribe((response : IBasket) => {
+  setBasket(basket: IBasket) {
+    return this.http.post(this.baseUrl + 'basket', basket).subscribe((response: IBasket) => {
       this.basketSource.next(response);
       this.calculateTotals();
-    },error => {
+    }, error => {
       console.log(error);
-    });
+    })
   }
 
 
