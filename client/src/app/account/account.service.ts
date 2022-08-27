@@ -63,6 +63,7 @@ export class AccountService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.clear();
     this.currentUserSource.next(null);
     this.router.navigateByUrl('/');
   }

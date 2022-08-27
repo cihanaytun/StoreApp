@@ -1,4 +1,5 @@
 ﻿using storeCore.Entities;
+using storeCore.Entities.OrderAggregate;
 using storeCore.Specifications;
 using System;
 using System.Collections.Generic;
@@ -46,5 +47,9 @@ namespace storeCore.Interfaces
         /// <param name="spec"></param>
         /// <returns></returns>
         Task<int> CountAsync(ISpecification<T> spec);
+
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }

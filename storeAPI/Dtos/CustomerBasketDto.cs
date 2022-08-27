@@ -9,7 +9,7 @@ namespace storeAPI.Dtos
     public class CustomerBasketDto
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public List<BasketItemDto> Items { get; set; }
     }
 }

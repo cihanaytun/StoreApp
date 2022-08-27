@@ -10,6 +10,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     CoreModule,
     HomeModule,
     ToastrModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ShopModule
     
     
     

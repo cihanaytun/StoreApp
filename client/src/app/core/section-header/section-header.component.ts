@@ -14,6 +14,10 @@ export class SectionHeaderComponent implements OnInit {
   constructor(private bcService : BreadcrumbService,private busyService: BusyService) { }
 
   ngOnInit(){
+    this.busyService.busy();
     this.breadcrumb$ = this.bcService.breadcrumbs$;
+  }
+  ngAfterViewInit(){
+  this.busyService.idle();
   }
 }

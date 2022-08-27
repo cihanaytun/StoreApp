@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.Json;
 using System.Collections.Generic;
 using storeCore.Entities;
+using storeCore.Entities.OrderAggregate;
 
 namespace storeInfrastructure.Data
 {
@@ -54,6 +55,21 @@ namespace storeInfrastructure.Data
                     }
                     await storeContext.SaveChangesAsync();
                 }
+
+
+                //Delivery Method
+                if (!storeContext.DeliveryMethods.Any())
+                {
+                    var deliveryMethodData = File.ReadAllText("../storeInfrastructure/Data/SeedData/delivery.json");
+                    var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodData);
+                    //üstteki veriyi ayrıştırıp product a attık
+                    foreach (var item in methods)
+                    {
+                        storeContext.DeliveryMethods.Add(item);
+                    }
+                    await storeContext.SaveChangesAsync();
+                }
+
             }
             catch (Exception ex)
             {
