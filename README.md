@@ -31,4 +31,5 @@
 - npm install uuid
 - https://regexlib.com/
   * login Email
+ - ng add @angular/cdk
   
