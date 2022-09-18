@@ -11,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { ShopModule } from './shop/shop.module';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { ShopModule } from './shop/shop.module';
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true}
+    {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
+
 
   ],
   bootstrap: [AppComponent]

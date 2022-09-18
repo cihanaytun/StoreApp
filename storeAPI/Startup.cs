@@ -25,6 +25,14 @@ namespace storeAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Add
+            //services.AddScoped<IProductRepository, ProductRepository>();
+            //services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+            services.AddAutoMapper(typeof(MappingProfiles));
+
+            services.AddControllers();
+
             //MySql 
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StoreContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -33,18 +41,6 @@ namespace storeAPI
             var identityConnectionString = _configuration.GetConnectionString("IdentityConnection");
             services.AddDbContext<AppIdentityDbContext>(options => options.UseMySql(identityConnectionString, ServerVersion.AutoDetect(identityConnectionString)));
 
-            //Cors
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsDevPolicy", builder =>
-                {
-                    builder.AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                });
-            });
-
-            services.AddControllers();
 
             //add rediss
             services.AddSingleton<IConnectionMultiplexer>(c =>
@@ -54,6 +50,10 @@ namespace storeAPI
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
+            // get application services extensions
+            services.AddApplicationServices();
+
+            services.AddIdentityServices(_configuration);
 
             /*services.AddSwaggerGen(c =>
             {
@@ -61,12 +61,6 @@ namespace storeAPI
             });*/
             // get swager services extensions
             services.AddSwaggerDocumantation();
-
-
-            //Add
-            //services.AddScoped<IProductRepository, ProductRepository>();
-            //services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
-            services.AddAutoMapper(typeof(MappingProfiles));
 
             //add
             /*services.Configure<ApiBehaviorOptions>(options =>
@@ -88,12 +82,19 @@ namespace storeAPI
             });*/
 
 
-
-            // get application services extensions
-            services.AddApplicationServices();
-            services.AddIdentityServices(_configuration);
+            //Cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsDevPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                });
+            });
 
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -122,12 +123,14 @@ namespace storeAPI
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            //cors
-            app.UseCors("CorsDevPolicy");
+
  
             //add for images 
             //before that cors policy must be defined because static files need to cors policy
             app.UseStaticFiles();
+
+            //cors
+            app.UseCors("CorsDevPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();

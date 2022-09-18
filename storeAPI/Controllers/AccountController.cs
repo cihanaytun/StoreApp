@@ -8,6 +8,7 @@ using storeAPI.Errors;
 using storeAPI.Extensions;
 using storeCore.Entities.Identity;
 using storeCore.Interfaces;
+using storeInfrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace storeAPI.Controllers
             _signInManager = signInManager;
             _tokenService = tokenService;
             _mapper = mapper;
+            
         }
 
 
@@ -61,7 +63,7 @@ namespace storeAPI.Controllers
         public async Task<ActionResult<AddressDto>> GetUserAddress()
         {
             var user = await _userManager.FindByUserClaimsPrincipleWithAddressAsync(User);
-            return _mapper.Map<Address,AddressDto>(user.Address);
+            return _mapper.Map<AddressDto>(user.Address);
         }
 
 
@@ -73,10 +75,10 @@ namespace storeAPI.Controllers
             user.Address = _mapper.Map<Address>(addressDto);
 
             var result = await _userManager.UpdateAsync(user);
-            if (result.Succeeded)
-            {
-                return Ok(_mapper.Map<AddressDto>(user.Address));
-            }
+
+
+            if (result.Succeeded) return Ok(_mapper.Map<AddressDto>(user.Address));
+
             return BadRequest("Problem updating the user");
         }
 

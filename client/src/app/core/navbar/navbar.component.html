@@ -11,8 +11,8 @@ p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top">
 
     <div class="d-flex align-items-center">
         <a class="position-relative me-4 ">
-            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark" routerLink="/basket"></i>
-                <div class="cart-no" *ngIf="(basket$ | async)">{{(basket$| async).items.length}}</div>           
+            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark " style="cursor: pointer;" routerLink="/basket"></i>
+                <div class="cart-no" style="cursor: pointer;" *ngIf="(basket$ | async)">{{(basket$| async).items.length}}</div>           
         </a>
         <ng-container *ngIf="(currentUser$ | async) === null">  
             <a class="btn btn-outline-secondary mr-2 me-2" routerLink="/account/login">Login</a>
