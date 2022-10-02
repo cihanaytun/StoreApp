@@ -2,8 +2,8 @@
 
 ## I am installing for store project
 
-### *{+ BACKEND +}*
-- SSL
+### *BACKEND*
+- {+ SSL +}
   * dotnet dev-certs https
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.Design
