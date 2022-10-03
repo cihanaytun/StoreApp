@@ -33,5 +33,8 @@
   * login Email
  - ng add @angular/cdk
  - ng add @angular/material
+ 
+ 
+ ### *PAYMENT SYSTEM **STRIPE** *
 
   
