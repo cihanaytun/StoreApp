@@ -35,6 +35,9 @@
  - ng add @angular/material
  
  
- ### *PAYMENT SYSTEM **STRIPE** *
+ ### *PAYMENT SYSTEM*
+ - [Stripe](https://dashboard.stripe.com/test/apikeys)
+    * Mail : zmm3p06985@waterisgone.com
+    * Password : Test_Store123/*-
 
   
