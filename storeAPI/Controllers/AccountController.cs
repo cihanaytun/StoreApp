@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using storeAPI.Dtos;
 using storeAPI.Errors;
 using storeAPI.Extensions;
@@ -12,8 +13,11 @@ using storeInfrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace storeAPI.Controllers
 {
@@ -25,16 +29,52 @@ namespace storeAPI.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ITokenService tokenService,IMapper mapper)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ITokenService tokenService,IMapper mapper,IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
             _mapper = mapper;
-            
+            _configuration = configuration;
         }
 
+
+        [HttpGet("mail")]
+        public IActionResult Mail()
+        {
+            SmtpClient smtp = new SmtpClient();
+            smtp.Credentials = new NetworkCredential(_configuration["Mail:Username"], _configuration["Mail:Password"]);
+            smtp.Port = int.Parse(_configuration["Mail:Port"]);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            var from = new MailAddress("pl0tpscgt5@popcornfly.com");
+            var to = new MailAddress(_configuration["Mail:Username"]);
+            var message = new MailMessage(from, to)
+            {
+                Subject = "Hiring Tool Password Recovery",
+                Body = "<html>" +
+                        "<body>" +
+                        "<div style='text-align:center'>" +
+                        "<a href='http://app.hiringtool.co/'><img src=http://app.hiringtool.co/assets/logo.png width=100 height=200 alt=\"logo\"></a>" +
+                        "</div>" +
+                        "<div style='text-align: center'>" +
+                        "<h1>Hiring Tool</h1>" +
+                        "</div>" +
+                        "</body>" +
+                        "</html>" ,
+                        
+                Priority = MailPriority.High,
+                IsBodyHtml = true
+            };
+
+            smtp.Send(message);
+            message.Dispose();
+            smtp.Dispose();
+
+            return StatusCode(200);
+        }
 
         [Authorize]
         [HttpGet]
