@@ -40,17 +40,17 @@ namespace storeAPI.Controllers
             _configuration = configuration;
         }
 
-
+/*
         [HttpGet("mail")]
         public IActionResult Mail()
         {
-            SmtpClient smtp = new SmtpClient();
+            SmtpClient smtp = new SmtpClient(_configuration["Mail:Host"]);
             smtp.Credentials = new NetworkCredential(_configuration["Mail:Username"], _configuration["Mail:Password"]);
             smtp.Port = int.Parse(_configuration["Mail:Port"]);
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            var from = new MailAddress("pl0tpscgt5@popcornfly.com");
-            var to = new MailAddress(_configuration["Mail:Username"]);
+            var from = new MailAddress(_configuration["Mail:Username"]);
+            var to = new MailAddress("aacurse@hotmail.com");
             var message = new MailMessage(from, to)
             {
                 Subject = "Hiring Tool Password Recovery",
@@ -69,13 +69,22 @@ namespace storeAPI.Controllers
                 IsBodyHtml = true
             };
 
-            smtp.Send(message);
-            message.Dispose();
-            smtp.Dispose();
+            try
+            {
+                smtp.Send(message);
+                message.Dispose();
+                smtp.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+
 
             return StatusCode(200);
         }
-
+*/
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
