@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using storeAPI.Errors;
 using storeCore.Entities;
 using storeCore.Interfaces;
 using System.Threading.Tasks;
@@ -22,7 +23,10 @@ namespace storeAPI.Controllers
         [HttpPost("{basketId}")]
         public async Task<ActionResult<CustomerBasket>> CreateOrUpdatePaymentIntent (string basketId)
         {
-            return await _paymentService.CreateOrUpdatePaymentIntent (basketId);
+            var basket =  await _paymentService.CreateOrUpdatePaymentIntent (basketId);
+
+            if (basket == null) return BadRequest(new ApiResponse(400, "Problem with youer basket"));
+            return basket;
         }
     }
 }
