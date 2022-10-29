@@ -79,6 +79,7 @@ namespace storeAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(statusCode:StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),statusCode: StatusCodes.Status404NotFound)]
@@ -101,6 +102,7 @@ namespace storeAPI.Controllers
         /// GetBrands
         /// </summary>
         /// <returns></returns>
+        [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
@@ -117,6 +119,7 @@ namespace storeAPI.Controllers
         /// GetTypes
         /// </summary>
         /// <returns></returns>
+        [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
