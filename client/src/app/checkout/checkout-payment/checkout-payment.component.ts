@@ -26,6 +26,9 @@ cardCvc : any;
 cardErrors: any;
 cardHandler = this.onChange.bind(this);
 loading = false;
+cardNumberValid = false;
+cardExpriyValid = false;
+cardCvcValid = false;
 
   constructor(private basketService:BasketService,private checkoutService:CheckoutService,private toastr:ToastrService,private router:Router) { }
 
@@ -57,12 +60,24 @@ loading = false;
 
 
 
-  onChange({error}){
-    if (error) {
-      this.cardErrors = error.message;
+  onChange(event){
+
+    if (event.error) {
+      this.cardErrors = event.error.message;
     }
     else {
       this.cardErrors = null;
+    }
+    switch (event.elementType) {
+      case 'cardNumber':
+        this.cardNumberValid = event.complete;
+        break;
+      case 'cardExpiry':
+        this.cardExpriyValid = event.complete;
+        break;
+      case 'cardCvc':
+        this.cardCvcValid = event.complete;
+        break;
     }
   }
 
@@ -74,7 +89,7 @@ loading = false;
       const paymentResult = await this.confirmPaymentWithStripe(basket);
   
       if (paymentResult.paymentIntent) {
-        this.basketService.deleteLocalBasket(basket.id);
+        this.basketService.deleteBasket(basket);
         const navigationExtras:NavigationExtras = {state:createdOrder};
         this.router.navigate(['checkout/success'],navigationExtras);
       }
@@ -85,7 +100,7 @@ loading = false;
     } 
     catch (error) {
       console.log(error);
-      this.loading = true;
+      this.loading = false;
     }  
   }
 

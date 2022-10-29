@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace storeCore.Specifications
 {
-    public class OrderByPaymentIntentIdWithItemsSpesification : BaseSpecification<Order>
+    public class OrderByPaymentIntentIdSpesification : BaseSpecification<Order>
     {
-        public OrderByPaymentIntentIdWithItemsSpesification(string paymentIntentId) : base(o => o.PaymentIntentId == paymentIntentId)
+        public OrderByPaymentIntentIdSpesification(string paymentIntentId) : base(o => o.PaymentIntentId == paymentIntentId)
         {
         }
     }
