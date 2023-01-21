@@ -1,4 +1,4 @@
-# <p style="text-align: center;">Store Project </p>
+# <p style="align-items: center;">Store Project </p>
 
 ### *Project Images*
 ![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image2.png)
