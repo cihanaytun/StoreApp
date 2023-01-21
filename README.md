@@ -1,7 +1,5 @@
 # Store
 
-## I am installing for store project
-
 ### *BACKEND*
 - SSL
   * dotnet dev-certs https
@@ -35,9 +33,6 @@
  - ng add @angular/material
  
  
- ### :credit_card: *PAYMENT SYSTEM*
- - [Stripe](https://dashboard.stripe.com/test/apikeys)
-    * Mail : zmm3p06985@waterisgone.com
-    * Password : Test_Store123/*-
+
 
   
