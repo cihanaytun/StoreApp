@@ -1,7 +1,13 @@
-# <p style="align-items: center;">Store Project </p>
+# Store Project 
 
 ### *Project Images*
 ![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image2.png)
+![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image3.png)
+![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image5.png)
+![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image6.png)
+![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image7.png)
+![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image4.png)
+
 
 ### *BACKEND*
 - SSL
