@@ -1,7 +1,7 @@
 # Store Project
 
 ### *Project Images*
-[a](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image2.png)
+![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image2.png)
 
 ### *BACKEND*
 - SSL
