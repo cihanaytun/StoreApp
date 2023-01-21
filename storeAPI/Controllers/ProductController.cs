@@ -47,10 +47,7 @@ namespace storeAPI.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// GetProductAll
-        /// </summary>
-        /// <returns></returns>
+
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProduct([FromQuery]ProductSpecParams productSpecParams)
         {
@@ -73,12 +70,6 @@ namespace storeAPI.Controllers
             return StatusCode(200,new Pagination<ProductToReturnDto>(productSpecParams.PageIndex,productSpecParams.PageSize,totalItems,data));
         }
 
-
-        /// <summary>
-        /// GetProductById
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(statusCode:StatusCodes.Status200OK)]
@@ -98,10 +89,6 @@ namespace storeAPI.Controllers
             return StatusCode(200,_mapper.Map<Product, ProductToReturnDto>(product));
         }
 
-        /// <summary>
-        /// GetBrands
-        /// </summary>
-        /// <returns></returns>
         [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
@@ -115,10 +102,6 @@ namespace storeAPI.Controllers
             return StatusCode(200, brand);
         }
 
-        /// <summary>
-        /// GetTypes
-        /// </summary>
-        /// <returns></returns>
         [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()

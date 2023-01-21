@@ -19,32 +19,17 @@ namespace storeInfrastructure.Data
             _database = redis.GetDatabase();
         }
 
-        /// <summary>
-        /// DeleteBasketAsync
-        /// </summary>
-        /// <param name="basketId"></param>
-        /// <returns></returns>
         public async Task<bool> DeleteBasketAsync(string basketId)
         {
             return await _database.KeyDeleteAsync(basketId);
         }
 
-        /// <summary>
-        /// GetBasketAsync
-        /// </summary>
-        /// <param name="basketId"></param>
-        /// <returns></returns>
         public async Task<CustomerBasket> GetBasketAsync(string basketId)
         {
             var data = await _database.StringGetAsync(basketId);
             return data.IsNullOrEmpty ? null : JsonSerializer.Deserialize<CustomerBasket>(data);
         }
 
-        /// <summary>
-        /// UpdateBasketAsync
-        /// </summary>
-        /// <param name="basket"></param>
-        /// <returns></returns>
         public async Task<CustomerBasket> UpdateBasketAsync(CustomerBasket basket)
         {
             var created = await _database.StringSetAsync(basket.Id,

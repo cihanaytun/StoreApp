@@ -25,11 +25,6 @@ namespace storeAPI.Middleware
         }
 
 
-        /// <summary>
-        /// For the errors
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
         public async Task InvokeAsync (HttpContext context)
         {
             try

@@ -19,40 +19,24 @@ namespace storeCore.Specifications
             Criteria = criteria;
         }
 
-        /// <summary>
-        /// Criteria
-        /// </summary>
         public Expression<Func<T, bool>> Criteria { get; }
 
-        /// <summary>
-        /// Includes
-        /// </summary>
         public List<Expression<Func<T, object>>> Includes { get; } =
             new  List<Expression<Func<T, object>>> ();
 
-        /// <summary>
-        /// OrderBy sorting
-        /// </summary>
+
         public Expression<Func<T, object>> OrderBy { get; private set; }
 
-        /// <summary>
-        /// OrderByDescending  sroting
-        /// </summary>
+
         public Expression<Func<T, object>> OrderByDescending { get; private set; }
 
-        /// <summary>
-        /// Take Pagining
-        /// </summary>
+
         public int Take { get; private set; }
 
-        /// <summary>
-        /// Skip Pagining
-        /// </summary>
+
         public int Skip { get; private set; }
 
-        /// <summary>
-        /// IsPaginingEnabled Pagining
-        /// </summary>
+ 
         public bool IsPagingEnabled { get; private set; }
 
 

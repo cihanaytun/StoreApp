@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using StackExchange.Redis;
 using storeAPI.Extensions;
 using storeAPI.Helpers;
 using storeAPI.Middleware;
 using storeInfrastructure.Data;
 using storeInfrastructure.Identity;
+using System.IO;
 
 namespace storeAPI
 {
@@ -129,6 +131,13 @@ namespace storeAPI
             //before that cors policy must be defined because static files need to cors policy
             app.UseStaticFiles();
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(),"Content")),
+                RequestPath = "/content"
+            });
+
             //cors
             app.UseCors("CorsDevPolicy");
 
@@ -137,6 +146,7 @@ namespace storeAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

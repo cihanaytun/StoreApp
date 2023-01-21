@@ -9,10 +9,7 @@ namespace storeCore.Specifications
 {
     public class ProductWithFiltersCountSpecification : BaseSpecification<Product>
     {
-        /// <summary>
-        /// Filers and Count and Search
-        /// </summary>
-        /// <param name="productSpecParams"></param>
+
         public ProductWithFiltersCountSpecification(ProductSpecParams productSpecParams)
             : base(x =>
                 (string.IsNullOrEmpty(productSpecParams.Search) || x.Name.ToLower().Contains

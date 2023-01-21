@@ -11,10 +11,6 @@ namespace storeInfrastructure.Data.Config
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
-        /// <summary>
-        /// Product configuration , Sınırlamalar
-        /// </summary>
-        /// <param name="builder"></param>
         
         public void Configure(EntityTypeBuilder<Product> builder)
         {

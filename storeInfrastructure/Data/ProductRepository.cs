@@ -15,21 +15,12 @@ namespace storeInfrastructure.Data
             _storeContext = storeContext;
         }
 
-
-        /// <summary>
-        /// ProductBrand
-        /// </summary>
-        /// <returns></returns>
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
         {
             return await _storeContext.ProductBrands.ToListAsync();
         }
 
-        /// <summary>
-        /// ProducyById
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         public async Task<Product> GetProductByIdAsync(int id)
         {
             return await _storeContext.Products
@@ -38,10 +29,6 @@ namespace storeInfrastructure.Data
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        /// <summary>
-        /// ProductAll
-        /// </summary>
-        /// <returns></returns>
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
         {
 
@@ -51,10 +38,7 @@ namespace storeInfrastructure.Data
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// ProductType
-        /// </summary>
-        /// <returns></returns>
+
         public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
         {
             return await _storeContext.ProductTypes.ToListAsync();

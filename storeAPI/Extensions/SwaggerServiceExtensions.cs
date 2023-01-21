@@ -18,7 +18,7 @@ namespace storeAPI.Extensions
                     Contact = new OpenApiContact
                     {
                         Name ="Cihan",
-                        Email ="cihan_aytun@hotmail.com",          
+                        Email ="aytuncihan@gmail.com",          
                     }
                     
                 });

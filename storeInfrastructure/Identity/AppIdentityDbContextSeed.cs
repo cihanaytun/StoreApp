@@ -17,16 +17,16 @@ namespace storeInfrastructure.Identity
                 var user = new AppUser
                 {
                     DisplayName = "Cihan",
-                    Email = "cihan_aytun@hotmail.com",
-                    UserName = "cihan_aytun@hotmail.com",
+                    Email = "aytuncihan@hotmail.com",
+                    UserName = "aytuncihan@hotmail.com",
                     Address = new Address
                     {
                         FirstName = "Cihan",
                         LastName = "Aytun",
-                        Street = "Ferah Caddesi Çayırlık Sokak",
-                        City = "İstanbul",
-                        State = "Üsküdar",
-                        ZipCode = "34600"
+                        Street = "Istanbul",
+                        City = "Istanbul",
+                        State = "Istanbul",
+                        ZipCode = "34000"
                     }
                 };
 

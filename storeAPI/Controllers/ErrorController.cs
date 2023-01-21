@@ -12,11 +12,6 @@ namespace storeAPI.Controllers
     [ApiExplorerSettings(IgnoreApi =true)]
     public class ErrorController : BaseApiController
     {
-        /// <summary>
-        /// Error
-        /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
         public IActionResult Error(int code)
         {
             return new ObjectResult(new ApiResponse(code));

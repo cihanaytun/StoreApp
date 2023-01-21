@@ -24,11 +24,7 @@ namespace storeAPI.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// GetBasketById
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         [HttpGet]
         public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
         {
@@ -37,11 +33,6 @@ namespace storeAPI.Controllers
         }
 
 
-        /// <summary>
-        /// UpdateBasket
-        /// </summary>
-        /// <param name="basket"></param>
-        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
         {

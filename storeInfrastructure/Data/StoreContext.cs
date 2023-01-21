@@ -8,9 +8,6 @@ using System.Reflection;
 
 namespace storeInfrastructure.Data
 {
-    /// <summary>
-    /// Database
-    /// </summary>
     public class StoreContext : DbContext
     {
         public StoreContext( DbContextOptions<StoreContext> options) : base(options)

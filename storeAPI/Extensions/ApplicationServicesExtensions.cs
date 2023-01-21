@@ -12,8 +12,7 @@ namespace storeAPI.Extensions
     {
         public static  IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            // addsingelton 1 kere oluşturulur
-            // addscoped her çağrı için oluşturulur
+
             services.AddSingleton<IResponseCacheService, ResponseCacheService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();

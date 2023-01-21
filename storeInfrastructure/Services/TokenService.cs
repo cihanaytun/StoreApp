@@ -23,11 +23,6 @@ namespace storeInfrastructure.Services
             _symetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Token:Key"]));
         }
 
-        /// <summary>
-        /// JWT TOKEN
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
         public string CreateToken(AppUser user)
         {
             var claims = new List<Claim>

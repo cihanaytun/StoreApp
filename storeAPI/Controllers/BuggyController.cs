@@ -28,10 +28,6 @@ namespace storeAPI.Controllers
         }
 
 
-        /// <summary>
-        /// Not found
-        /// </summary>
-        /// <returns></returns>
         [HttpGet("notfound")]
         public ActionResult GetNotFoundRequest()
         {
@@ -44,10 +40,6 @@ namespace storeAPI.Controllers
         }
 
 
-        /// <summary>
-        /// Server error
-        /// </summary>
-        /// <returns></returns>
         [HttpGet("servererror")]
         public ActionResult GetServerError()
         {
@@ -58,10 +50,7 @@ namespace storeAPI.Controllers
         }
 
 
-        /// <summary>
-        /// Bad Request
-        /// </summary>
-        /// <returns></returns>
+
         [HttpGet("badrequset")]
         public ActionResult GetBadRequest()
         {
@@ -69,11 +58,7 @@ namespace storeAPI.Controllers
         }
 
 
-        /// <summary>
-        /// Bad request by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         [HttpGet("badrequset/{id}")]
         public ActionResult GetBadRequestId(int id)
         {
