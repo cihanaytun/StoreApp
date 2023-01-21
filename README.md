@@ -1,4 +1,4 @@
-# Store Project
+# Store Project {align=center}
 
 ### *Project Images*
 ![](https://github.com/cihanaytun/StoreApp/blob/master/ProjectImages/image2.png)
